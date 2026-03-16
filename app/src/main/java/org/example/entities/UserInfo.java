@@ -1,6 +1,7 @@
 package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -23,13 +24,18 @@ public class UserInfo {
     Long Id;
 
     @Id
+    @JsonProperty("user_id")
     private String userId;
 
+    @JsonProperty("first_name")
     private String firstName;
 
+    @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("phone_number")
     private Long phoneNumber;
 
+    @JsonProperty("email")
     private String email;
 }
