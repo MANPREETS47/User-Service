@@ -1,38 +1,28 @@
-package org.example.entities;
+package org.example.model;
+
+
+import org.example.entities.UserInfo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.NonNull;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 
-@Entity
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name = "users")
-public class UserInfo
+public class UserInfoDto
 {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Id
     @JsonProperty("user_id")
     @NonNull
     private String userId;
@@ -55,5 +45,15 @@ public class UserInfo
 
     @JsonProperty("profile_pic")
     private String profilePic;
+
+    public UserInfo transformToUserInfo() {
+        return UserInfo.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .userId(userId)
+                .email(email)
+                .profilePic(profilePic)
+                .phoneNumber(phoneNumber).build();
+    }
 
 }
