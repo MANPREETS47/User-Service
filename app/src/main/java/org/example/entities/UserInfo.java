@@ -29,28 +29,23 @@ import lombok.NonNull;
 public class UserInfo
 {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
     @JsonProperty("user_id")
-    @NonNull
     private String userId;
 
     @JsonProperty("first_name")
-    @NonNull
     private String firstName;
 
     @JsonProperty("last_name")
-    @NonNull
     private String lastName;
 
     @JsonProperty("phone_number")
-    @NonNull
     private Long phoneNumber;
 
     @JsonProperty("email")
-    @NonNull
     private String email;
 
     @JsonProperty("profile_pic")
